@@ -1,0 +1,65 @@
+# This program, written in the Icon programming language, summarizes
+# (exercise) training log data from a file usually known as CLTRAINEW.
+#
+# CLTRAINEW was created by Paul S. Wolberg in January 1985, to track
+# training done by a team preparing for the MSU
+# (Michigan State University) Classic team triathlon.
+# Later, the file devolved into a log for training done by me,
+# Mark Riordan.  
+#
+# Entries in the log are in chronological order.  Entries in the log
+# changed format over time, until the format mostly settled down in mid-1988.
+# This program recognizes only entries in this "new" format.
+# Therefore, input to the program ought to be pre-processed to remove
+# any lines prior to (typically) 1989-01-01.
+#
+# I thought of writing this program shortly after Fall 1986, when I ordered
+# and received an Icon distribution tape (for VAX/VMS) from the University of Arizona.
+# But I didn't start writing it until March 21, 2022.
+# Mark Riordan  riordan@rocketmail.com 
+
+# The input file contains lines with a date followed by zero or more
+# workouts separated by semi-colons.  Comments may be included in parentheses,
+# which may be nested.  Most days contain only one line, but multiple lines for
+# a given date are possible, in which case subsequent lines start with a +
+# in column 1.
+# Here's an example:
+#   07/23  0.6 miles sr; 18.3 miles br.; 4.6 miles rr.  (Capitol City Triathlon.
+#   +      Think swim may have been short. 
+# In later years, I started omitting the units, due to the difficulty of entering
+# text on a mobile phone.  If units are omitted, they default to a fixed unit
+# based on activity type (usually miles), like this:
+#   9/09 [124.8T] 13.29 b.; 2.3 w. 
+# Body weight in pounds may be present in square brackets.  If followed by T,
+# the weight was measured on Tam's old scale, which is believed to read 
+# 0.8 pounds low.
+# Blank lines may be present, and can be ignored.  They should occur only between
+# a Saturday and a Sunday.
+# The first day of every year contains the sequence (*** nnnn )
+# where nnnn is the year. 
+
+procedure doit() 
+    
+end
+
+procedure main()
+    prevline := &null
+    iline := 0
+    oldyear := 0
+    while line := trim(read()) do {
+        iline := iline + 1;
+        # Look for text like:   *** 2001   and if present, extract the year from it.
+        line ? { if tab(find("*** ")) then { move(4); year := 0+tab(many('0123456789')); }};
+        if year ~= oldyear then {
+            if oldyear ~= 0 then {
+                if year ~= (oldyear+1) then {
+                    write("** Error: year is ", year, " prev year was ", oldyear)
+                }
+            }
+            oldyear := year
+        }
+        #if iline > 11 then {
+        #    break
+        #}
+    }
+end
