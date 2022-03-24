@@ -38,28 +38,48 @@
 # The first day of every year contains the sequence (*** nnnn )
 # where nnnn is the year. 
 
-procedure doit() 
-    
+global oldyear
+
+procedure proc1line(line, iline) 
+    #write("proc1line line ", iline, " oldyear=", oldyear, ": ", line)
+    year := oldyear
+
+    # Look for text like:   *** 2001   and if present, extract the year from it.
+    line ? { if tab(find("*** ")) then { move(4); year := 0+tab(many('0123456789')); }};
+    if year ~= oldyear then {
+        if oldyear ~= 0 then {
+            if year ~= (oldyear+1) then {
+                write("** Error: year is ", year, " prev year was ", oldyear)
+            }
+        }
+        oldyear := year
+    }
+    write(year,"-",line)
+
+end
+
+procedure readlines()
+    entireline := &null
+    oldyear := 0
+    iline := 0
+
+    while line := trim(read()) do {
+        if *line > 0 then {
+            if line[1] == "+" then {
+                entireline := entireline || line[2:1+*line]
+            } else {
+                if \entireline then {
+                    proc1line(entireline, iline)
+                }
+                entireline := line
+            }
+        }
+        iline := iline + 1;
+    }
+    # Handle last line.
+    proc1line(entireline, iline)
 end
 
 procedure main()
-    prevline := &null
-    iline := 0
-    oldyear := 0
-    while line := trim(read()) do {
-        iline := iline + 1;
-        # Look for text like:   *** 2001   and if present, extract the year from it.
-        line ? { if tab(find("*** ")) then { move(4); year := 0+tab(many('0123456789')); }};
-        if year ~= oldyear then {
-            if oldyear ~= 0 then {
-                if year ~= (oldyear+1) then {
-                    write("** Error: year is ", year, " prev year was ", oldyear)
-                }
-            }
-            oldyear := year
-        }
-        #if iline > 11 then {
-        #    break
-        #}
-    }
+    readlines()
 end
