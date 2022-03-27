@@ -40,6 +40,23 @@
 
 global oldyear
 
+# Remove comments from input.  As with PostScript, comments 
+# start with ( and end with ). 
+# Returns the decommented version of the string.
+# Credit: https://www2.cs.arizona.edu/~collberg/Teaching/372/2005/Html/Html-34/
+procedure decomment(S);
+   while (1) do {
+      if f := find("(",S) &
+         t := find(")",S,f+1) &
+         not (find("(",S,f+1) < t) &
+         not (find(")",S,f+1) < t) then 
+         S[f:t+1] := ""
+      else
+         break
+   }
+   return S;
+end
+
 procedure proc1line(line, iline) 
     #write("proc1line line ", iline, " oldyear=", oldyear, ": ", line)
     year := oldyear
@@ -54,6 +71,7 @@ procedure proc1line(line, iline)
         }
         oldyear := year
     }
+    line := decomment(line)
     write(year,"-",line)
 
 end
