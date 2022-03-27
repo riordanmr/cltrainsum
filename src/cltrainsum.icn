@@ -72,7 +72,25 @@ procedure proc1line(line, iline)
         oldyear := year
     }
     line := decomment(line)
-    write(year,"-",line)
+    line := trim(line)
+
+    if *line > 0 then {
+        lineGood := 1
+        if not many(&digits,line) then {
+            write("** No leading date on line ", iline, " ", line)
+            lineGood := 0
+        } else if line[3] == "/" then {
+            line[3] := "-"
+        } else {
+            write("** Missing / in date on line ", iline, " ", line)
+            lineGood := 0
+        }
+        
+        if lineGood == 1 then {
+            line := year || "-" || line
+            #write(line)
+        }
+    }
 
 end
 
