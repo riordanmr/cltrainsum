@@ -40,6 +40,32 @@
 
 global oldyear
 
+procedure ltrim(txt)
+    while txt[1] == " " do {
+        txt[1] := ""
+    }
+    return txt
+end
+
+# From http://www2.cs.arizona.edu/icon/ftp/newsgrp/group96a.txt
+procedure join(stringList,separator)
+  local result
+  result := get(stringList)
+  every result ||:= separator || !stringList
+  return result
+end
+
+procedure split(string,separator)
+  local result
+  string ? {
+    until pos(0) do {
+      result := tab(find(separator) | 0)
+      suspend result
+      move(*separator)
+    }
+  }
+end
+
 # Remove comments from input.  As with PostScript, comments 
 # start with ( and end with ). 
 # Returns the decommented version of the string.
@@ -55,6 +81,11 @@ procedure decomment(S);
          break
    }
    return S;
+end
+
+procedure procActivity(date,activity)
+    activity := ltrim(trim(activity))
+    write("date: '", date, "' activity: '", activity,"'")
 end
 
 procedure proc1line(line, iline) 
@@ -81,14 +112,28 @@ procedure proc1line(line, iline)
             lineGood := 0
         } else if line[3] == "/" then {
             line[3] := "-"
+            line := year || "-" || line
+            write(line)
+            if *line < 10 then {
+                write("** Line ", iline, " too short: ", line)
+                lineGood := 0
+            }            
         } else {
             write("** Missing / in date on line ", iline, " ", line)
             lineGood := 0
         }
         
         if lineGood == 1 then {
-            line := year || "-" || line
-            #write(line)
+            # 1971-08-10  26.4 miles b.
+            # 123456789a1
+
+            date := line[1:11]
+            rem := ""
+            if *line > 10 then {
+                rem := ltrim(line[11:1+*line])
+            }
+            write("date='",date,"' rem='",rem,"' *line=",*line)
+            every procActivity(date,split(rem,";"))
         }
     }
 
