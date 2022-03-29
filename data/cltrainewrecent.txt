@@ -511,7 +511,7 @@
 03/09  2.8 miles r.  (w/ PSM.  Not good)
 03/10  48 ll.
 
-03/11  6.1 miles r.  (Feel fat!)  48 ll.
+03/11  6.1 miles r.  (Feel fat!);  48 ll.
 03/12
 03/13  5.1 miles r.
 03/14
@@ -1577,7 +1577,7 @@
 07/31
 08/01
 
-08/02  2.8 miles rr., 24.4 miles br., 2.6 miles rr. (Great Lakes State Games
+08/02  2.8 miles rr.; 24.4 miles br.; 2.6 miles rr. (Great Lakes State Games
 +      Biathlon at Grand River Park.  19:27.12, 1:05.96, 1:12:29, 1:42,
 +      19:32 = 1:54:18.  Had to urinate during the first run.  During
 +      bike, was inspired by Beth Jabin and Sheila Robertson.  Achieved
@@ -1881,7 +1881,7 @@
 04/02
 04/03  5k rr.  (Food-N-Fitness 5K in 20:36-0:08=20:28.  new course was
 +      supposedly 40 seconds long.  I started late (>8 seconds, really).
-+      But, still was disappointed.  Slight cramps.)  48 min walk.
++      But, still was disappointed.  Slight cramps.);  48 min walk.
 
 04/04  4 miles walk.
 04/05  2 miles r.  (Very slow.  Very sluggish.  Some foot pain.)
@@ -4205,7 +4205,7 @@
 05/08  3.3 miles r. (Slow); 104 pu.
 05/09  9.82 miles b.; 1.5 miles w.; 68 pu.  (Problems sleeping)
 
-05/10  7.3 miles r. (Pretty fast); 10.76 miles b. w/ PSM; 104 pu.
+05/10  7.3 miles r. (Pretty fast); 10.76 miles b. (w/ PSM); 104 pu.
 05/11    60 pu.
 05/12  2 miles r.; 1.5 miles w.; 100 pu.
 05/13  12.33 miles b.; 132 pu.
@@ -4820,7 +4820,7 @@
 10/05  5 miles r.; 4.4 miles w. 
 10/06  3.5 miles r.; 4.8 miles w.
 10/07  6.8 miles w.
-10/08  2 miles r., 1.7 miles w.
+10/08  2 miles r.; 1.7 miles w.
 10/09  27.10 miles b. (Felt great--great day); 1.9 miles w.
 
 10/10  24.6 miles b.; 
@@ -5093,7 +5093,7 @@
 05/30  4 miles w.
 05/31  5.8 miles w.
 06/01  1.7 miles w.  (Tower Park, extreme rain right after)
-06/02  7.86 miles b. 1.3 miles w.
+06/02  7.86 miles b.; 1.3 miles w.
 06/03  6 miles r.; 5.3 miles b.
 
 06/04  1.4 miles w.  (In Gov Nelson State Park; 100 yr celebration was over.)
@@ -5439,7 +5439,7 @@
 03/28  7.5 miles w.  (Incl. to Magic Mill)
 03/29  6.2 miles w.
 03/30  6.6 miles w.  (Quann park)
-03/31  4.7 miles w., 0.53 miles b.  (Praire Morain Park, Copps)
+03/31  4.7 miles w.; 0.53 miles b.  (Praire Morain Park, Copps)
 
 04/01  4 miles w.; 9 miles b.; 0.8 miles r.
 04/02  7.5 miles w.  (Incl. to Copps w/ Patty and Atlas)
@@ -5670,7 +5670,7 @@
 10/16  4.7 miles b.; 2.6 miles w.
 10/17  3 miles w.
 10/18  9.40 miles b.; 0.6 miles w.
-10/19  4.69 miles b. 0.8 miles w.
+10/19  4.69 miles b.; 0.8 miles w.
 10/20  12.93 miles b.; 2.5 miles w.
 
 10/21  17.62 miles b.; 3 miles w.
@@ -5820,7 +5820,7 @@
 02/25  2.1 miles w.
 02/26  5.9 miles w.
 02/27  4.5 miles w.
-02/28  5 miles b., 0.6 miles w.
+02/28  5 miles b.; 0.6 miles w.
 03/01  5 miles b.; 1.3 miles w.
 03/02  4.6 miles w.
 
@@ -5833,7 +5833,7 @@
 03/09  13.27 miles b.  (Bont. to Bike-A-Rama @ Alliant Ctr.  Cold & rainy.)
 
 03/10  8.1 miles b. (M400, approx.. Cold & Windy); 4 miles w.
-03/11  8.13 miles b., 2 miles w.
+03/11  8.13 miles b.; 2 miles w.
 03/12  5.1 miles b.; 2.8 miles w.
 03/13  5 miles b.; 2.8 miles w.
 03/14  5 miles b.; 2 miles w.
@@ -6451,7 +6451,7 @@
 08/31  17.32 miles b. (M400); 1.2 miles r.; 1.6 miles w.
 09/01  17.87 miles b.; 1.3 miles w.
 09/02  2.5 miles r.; 2 miles w.; 5.04 miles b.
-09/03  12.61 miles b. 1.3 miles w.
+09/03  12.61 miles b.; 1.3 miles w.
 09/04  2.5 miles r.; 4.88 miles b.; 0.9 miles w.
 09/05  12.88 miles b.
 09/06  26.25 miles b.
@@ -6707,7 +6707,7 @@
 04/11  11.68 miles b.; 2.5 miles w.
 04/12  4.91 miles b.; 3.1 miles r.; 2.4 miles w.
 04/13  2.5 miles r.; 8.23 miles b.
-04/14  3 miles r.; 8.30 miles b. 0.75 miles w.
+04/14  3 miles r.; 8.30 miles b.; 0.75 miles w.
 04/15  8.3 miles b.; 2 miles w.
 04/16  4.87 miles b.; 2.6 miles r.
 04/17  24.27 miles b.; 
@@ -7311,7 +7311,7 @@
 09/18  1.7 miles rr. (Dog Jog w/ Juno, 14:14.35, she tired at end.
 +      PSM&Atlas about 6th.) [129.5 mw.]
 09/19  4.84 miles b.; 2 miles w. [130 mw.]
-09/20  2.5 miles r.; 4.85 miles b., 2 miles w. [129.5 mw.]
+09/20  2.5 miles r.; 4.85 miles b.; 2 miles w. [129.5 mw.]
 09/21  8.60 miles b.; 1.8 miles w. [129.5 mw.]
 09/22  4.86 miles b.; 3.8 miles w.
 09/23  2.6 miles r.; 4.85 miles b.; 3.4 miles w. [129.5 mw.]
@@ -7515,7 +7515,7 @@
 03/15  [130] 3 miles r.; 4.88 miles b.; 2 miles w.
 03/16  [130] 4.7 miles w.
 03/17  [130] 5.7 miles w.
-03/18  [130] 3.2 miles w. [Field Museum]
+03/18  [130] 3.2 miles w. (Field Museum)
 
 03/19  [130.5]  6 miles r.; 2.15 miles b.; 1.5 w.
 03/20  [132] 4.89 miles b.; 0.7 miles w.
@@ -7530,7 +7530,7 @@
 03/28  [130] 2.5 miles r.; 4.68 miles b.; 2 miles w.
 03/29  [130] 6.69 miles b.; 1.3 miles w.
 03/30  [131] 3.2 miles r.; 4.87 miles b.; 1.5 miles w.
-03/31  [130] 4.83 miles b. 2.6 miles w.
+03/31  [130] 4.83 miles b.; 2.6 miles w.
 04/01  [130] 4.5 miles w.
 
 04/02  [130] 3 miles w.; 5.5 miles r. (Muscles tightened up)
@@ -7604,7 +7604,7 @@
 05/29  [129] 25.14 miles b.(T1500); 2 miles w.
 05/30  [129.5] 4.87 miles b.; 2.8 miles w.
 05/31  [130] 4.70 miles b.; 4.1 miles r.; 1 mile w.
-06/01  [130] 4.71 miles b. 3.3 miles r.; 2.4 miles w.
+06/01  [130] 4.71 miles b.; 3.3 miles r.; 2.4 miles w.
 06/02  [130.5] 4.87 miles b.; 1.6 miles w.
 06/03  [130] 6.3 miles r.; 1.4 miles w.
 
@@ -9017,7 +9017,7 @@
 11/02 [124.4T] 11.0 b.
 11/03 [124.2T] 13.2 b.
 11/04 [124.0T] 11.4 b.
-11/05 [124.6T] 5.16 r. (@7:29): 11.0 b.
+11/05 [124.6T] 5.16 r. (@7:29); 11.0 b.
 11/06 [123.8T] 10.5 b. (to FedEx); 1.3 w.
 11/07 [125.2T] 19.0 b.; 1.6 w.
 
@@ -9824,7 +9824,7 @@
 10/09 [123.8T] 3.5 w. (a guess. Six Flags Chicago)
 10/10 [123.6T] 0.39 w.; 16 w68.; 14.6 b.; (mow both)
 10/11 [122.8T] 2.26 w.; 13.4 b.
-10/12 [123.0T] 16 w68.; 1.56 w.; 12.3,b. (?)
+10/12 [123.0T] 16 w68.; 1.56 w.; 12.3 b. (?)
 10/13 [122.6T] 2.4 w.
 10/14 [123.2T] 14.2 b.
 10/15 [123.6T] 18 w68.; 1.5 r.; 7.4 b.
@@ -10222,7 +10222,7 @@
 
 09/23 [123.0T] 13.2 b.
 09/24 [123.0T] 5.3 w. (some w/ Tam at Cherokee Marsh)
-09/25 [124.2T] 14 w68.; 1.9 w. 12.0 b.
+09/25 [124.2T] 14 w68.; 1.9 w.; 12.0 b.
 09/26 [123.6T] 12 w 68.; (recently noticed that MapMyRun always exaggerates distance, by inconsistent amt); 1.3 w.; 12.1 b.
 09/27 [123.4T] 1.7 w.; 12.0 b.
 09/28 [123.6T] 12 w68.; 12.0 b.; 2.4 w.
@@ -11027,7 +11027,7 @@
 08/29 [123.6T] 13.7 b.; 2.1 w. 
 08/30 [123.8T] 15.9 b.; 0.7 w.; 125 yards s. 
 
-08/31 [123.8T] 27.9 b.; 50 yards s. (w/ Tam) 0.6 w. 
+08/31 [123.8T] 27.9 b.; 50 yards s. (w/ Tam); 0.6 w. 
 09/01 [124.2T] 21.0 b.; 125 yards s.; 0.6 w. 
 09/02 [123.6T] 13.1 b.; 1.1 w. 
 09/03 [124.4T] 8 w68.; 15.5 b.; 0.4 w. 
@@ -11400,7 +11400,7 @@
 07/20 [124.4T] 8.9 b.; 2.4 w. 
 07/21 [125.6T] 12.5 b.; 0.6 w. 
 07/22 [126.8T] 12.5 b.; 1.8 w. 
-07/23 [126.0T] 12.k3 b.: 1.3 w. 
+07/23 [126.0T] 12.k3 b.; 1.3 w. 
 07/24 [125.6T] 3.5 b. 
 07/25 [124.4T] (left for Sedona trip 3)
 
@@ -11750,7 +11750,7 @@
 
 05/22 [125.4T] 21.68 b. (Installed old Avocet 15 on Bontrager; it still had 668.1 miles on it)
 05/23 [123.6T] 15.9 b. (Odo 37.59); 0.5 w. 
-05/24 [124.2T] 11.94 b. 49.53 odo); 1 w. 
+05/24 [124.2T] 11.94 b. (49.53 odo); 1 w. 
 05/25 [124.6T] 4.9 w. (Mostly w/ Tam)
 05/26 [127.2T] (yikes) 3.8 w. (L ankle hurt more than usual)
 05/27 [126.6T] (reset Bont avocet 15) 12.1 b. (By avocet at 1998; 12.3 by Strava); 0.75 w. (W/ Tam)
@@ -11793,7 +11793,7 @@
 06/29 [125.6T] 12.50 b.; 1.4 w. 
 06/30 [126.0T] 1.4 w.; 12 b. 
 07/01 [124.2T] 13.4 b.; 1.6 w. 
-07/02 [124.0T] 18.3 b. With Tam; she crashed near circle on downhill race); 1.6 w. 
+07/02 [124.0T] 18.3 b. (With Tam; she crashed near circle on downhill race); 1.6 w. 
 
 07/03 [125.8T] 8 w68.; 21.78 b. 
 07/04 [123.8T] 12.75 b. 
@@ -12535,7 +12535,7 @@
 04/10 [123.4T] 10.5 b.; 1.11 w.
 04/11 [123.0T] 1.29 w.; 11.1 b.
 04/12 [123.8T] 7.4 b.; 1.9 w.
-04/13 [123.2T] 7.3 b.; 1.69+0.70+0.19
+04/13 [123.2T] 7.3 b.; 2.58 w.
 04/14 [124.0T] 21.1 b.
 
 04/15 [123.2T] 7.9 b.; 2.5 w.

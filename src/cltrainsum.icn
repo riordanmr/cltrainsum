@@ -38,7 +38,9 @@
 # The first day of every year contains the sequence (*** nnnn )
 # where nnnn is the year. 
 
-global oldyear
+link strings
+
+global oldyear, outfile, tableActTypes
 
 procedure ltrim(txt)
     while txt[1] == " " do {
@@ -83,15 +85,37 @@ procedure decomment(S);
    return S;
 end
 
-procedure procActivity(adate,activity)
+# Given a raw individual activity, parse and return its components.
+procedure procActivity(adate,activity,iline)
     activity := ltrim(trim(activity))
     write("date: '", adate, "' activity: '", activity,"'")
+    # Crack off the leading quantity.
+    if activity ? { quant := tab(many('0123456789.')) & rem := tab(many(&ascii)) } then {
+        #write("  quant='", quant,"' rem='", rem, "'")
+    } else {
+        write("!! On line ", iline, " failed to parse ", activity)
+        fail
+    }
+
+    rem := ltrim(rem)
+    units := ""
+    activityType := ""
+    if rem ? { units:= tab(many(&ascii -- ' '))} then {
+        activityType := ltrim(trim(rem[1+*units:0]))
+        if *activityType == 0 then {
+            activityType := units
+            units := ""
+        }
+    }
+    #write(outfile,"  quant='", quant,"' units='",units,"' activityType='",activityType,"'")
+    tableActTypes[activityType] +:= 1
+    write(outfile,adate,",",quant,",",units,",",activityType)
 end
 
 # Proceess the data for an entire day.  The input has been partially parsed.
 # 
-procedure procParsedDay(adate, inbrack, activities)
-    every procActivity(adate,split(activities,";"))
+procedure procParsedDay(adate, inbrack, activities, iline)
+    every procActivity(adate,split(activities,";"), iline)
 end
 
 # Process the data for an entire day.
@@ -144,21 +168,32 @@ procedure procRawDay(line, iline)
                 rem := ltrim(line[11:1+*line])
             }
 
-            # Strip off any leading info in [].  This will be weight data,
+            # Extract the info in [].  This will be weight data,
             # plus occasionally other information like blood pressure.
+            # Note that older records had this at the end, rather than the beginning.
             inbrack := ""
-            if rem ? {tab(match("[")) & inbrack := tab(many('0123456789T.'));  clbr := match("]") } then {
-                rem := rem[clbr:0]
+            if rem ? {tab(find("[")) & move(1) & inbrack := tab(many(&ascii -- ']')) & clbr := match("]") } then {
+                rem := replace(rem,"[" || inbrack || "]", "")
                 #write("Matched []. inbrack='",inbrack,"' clbr=",clbr," rem='", rem, "'")
             }
             write("date='",adate,"' inbrack='",inbrack,"' rem='",rem,"'")
-            procParsedDay(adate, inbrack, rem)
+            procParsedDay(adate, inbrack, rem, iline)
         }
     }
 
 end
 
+procedure wrapup()
+    #sortedList := sort(tableActTypes,4)
+    every act := !sort(tableActTypes,2) do {
+        write(image(act[1]),"\t", act[2])
+    }
+    #every write(k:=key(tableActTypes),"\t",tableActTypes[k])
+end
+
 procedure readlines()
+    outfile := open("act.csv", "w")
+    tableActTypes := table(0)
     entireline := &null
     oldyear := 0
     iline := 0
@@ -178,6 +213,18 @@ procedure readlines()
     }
     # Handle last line.
     procRawDay(entireline, iline)
+    wrapup()
+end
+
+# Fail if i is 0, else succeed.
+procedure testFail(i)
+    if i=0 then {
+        # I don't need to fail explicitly; simply not executing "return"
+        # seems to cause failure.
+        #fail
+    } else {
+        return
+    }
 end
 
 procedure test1()
@@ -199,9 +246,40 @@ procedure test1()
         rem2 := rem[clbr:0]
         write("rem2='",rem2,"'")
     }
+
+    rem := "25.18 miles b. (M400); 1.8 miles w. [130 mw.]"
+    write("testing with: ",rem)
+    inbrack := ""
+    if rem ? {tab(find("[")) & move(1) & inbrack := tab(many(&ascii -- ']')) & clbr := match("]") } then {
+        rem := replace(rem,"[" || inbrack || "]", "")
+        write("Matched []. inbrack='",inbrack,"' clbr=",clbr," rem='", rem, "'")
+    }
+
+    if testFail(1) then {
+        write("testFail(1) succeeded, as expected")
+    } else {
+        write("testFail(1) failed - Error!")
+    }
+    if testFail(0) then {
+        write("testFail(0) succeeded - Error!")
+    } else {
+        write("testFail(0) failed, as expected")
+    }    
 end
 
-procedure main()
-    #test1()
-    readlines()
+procedure main(args)
+    test := &null
+    i := 1
+    while i <= *args do {
+        if args[i] == "-t" then {
+            test := 1
+        }
+        i:=i+1
+    }
+    
+    if \test then {
+        test1()
+    } else {
+        readlines()
+    }
 end
