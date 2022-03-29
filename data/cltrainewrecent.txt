@@ -1015,7 +1015,7 @@
 04/27
 
 04/28  8.5 miles r.  (Ran to campus; banditted Jack Breslin 5k w/ PSM 21:30,
-+      ran back home.  Calves ached, but endurance OK).
++      ran back home.  Calves ached, but endurance OK)
 04/29
 04/30
 05/01  3.5 miles r.  (Fast; 12 laps line 9 in 22:13.85)
@@ -4692,7 +4692,7 @@
 
 06/20  29.79 miles b. (Clockwise around Lake Mendota as usual, but
 +      returned via Monona and Arboretum for first time); 
-+      1.4 miles w. (First time Viking Park).
++      1.4 miles w. (First time Viking Park)
 06/21  1.7 miles w. (Stiff); 12 w62.
 06/22  4.1 miles r.; 12 w62.
 06/23  17.08 miles b.; 1 mile w.; 24 w62.
@@ -5134,7 +5134,7 @@
 07/05  3.7 miles w.; 18.30 miles b.
 07/06  1.3 miles r.; 2 miles w. (First time in Sevylor, at Gov. Nelson)
 07/07  11.8 miles w.
-07/08  4.3 miles w.  (Kayaking at Gov. Nelson).
+07/08  4.3 miles w.  (Kayaking at Gov. Nelson)
 
 07/09  18.4 miles b.; 2.1 miles w.
 07/10  1.5 miles r.; 3 miles w.  (Swimming at Gov. Nelson)
@@ -5227,7 +5227,7 @@
 
 09/24  6.8 miles r.; 4 miles w.
 09/25  22.60 miles b. (Bont., w/ old Avocet 15); 2.1 miles w.
-09/26  2.6+1.3 miles w.
+09/26  3.9 miles w.
 09/27  6.5 miles r.;5.3 miles w.
 09/28  22.78 miles b. (Bont.; first time w/ new Avocet 15); 0.5 miles w.
 09/29  21.45 miles b. (M400, east on city trail to Fitchburg); 1.5 miles w.
@@ -5575,7 +5575,7 @@
 07/25  7.9 miles w.
 07/26  5.8 miles w.
 07/27  5.3 miles w.
-07/28  12.36 miles b. (first time on rail-to-trail near Odana); 1.3+
+07/28  12.36 miles b. (first time on rail-to-trail near Odana); 1.3 w. (Not sure this was walking)
 
 07/29  18.17 miles b.; 2.1 miles w.
 07/30  5.9 miles w.
@@ -5797,7 +5797,7 @@
 02/04  7.6 miles b.
 02/05  4.86 miles b.
 02/06  7 miles b.; 0.75 miles w.
-02/07  10.10 miles
+02/07  10.10 miles b. (In '22: assuming it's biking)
 02/08  5.1 miles b.; 1.8 miles w.
 02/09  1 mile w. (1st tm Token Creek off-leash); 24.48 miles b. (Lk Mendota)
 
@@ -6173,7 +6173,7 @@
 12/31  5 miles w.
 01/01  10.69 miles b.; 1 mile r.; 1.5 miles w.  (*** 2003 ***)
 01/02  4.8 miles b.; 1.9 miles w.
-01/03  1.5 miles r.; 2.2 miles w.; 4,9 miles b.
+01/03  1.5 miles r.; 2.2 miles w.; 4.9 miles b.
 01/04  19.44 miles b.
 
 01/05  2 miles r.; 5 miles w.
@@ -7185,7 +7185,7 @@
 05/31  14.12 miles b.
 06/01  13.55 miles b.
 06/02  11.64 miles b.; 0.7 miles w.; (mow front)
-06/03  9.74 miles .; 2.6 miles w.
+06/03  9.74 miles b.; 2.6 miles w.
 06/04  21.40 miles b. (Bont.); 1.2 miles w. (Ellingboe)
 
 06/05  25.05 miles b. (T1500.  24.3 at 15.58 mph); 
@@ -7715,7 +7715,7 @@
 
 09/03  [125.9] 23.62 miles b. (M400)
 09/04  [125.6] 6 miles r.
-09/05  [127.5] 12.6 miles b.; 1.2 miles miles w.
+09/05  [127.5] 12.6 miles b.; 1.2 miles w.
 09/06  [125.6] 13.60 miles b.; 2 miles w.
 09/07  [127] 12.62 miles b.; 2.1 miles w.
 09/08  [125.5] 1.4 miles w.; 11.44 miles b.
@@ -7918,7 +7918,7 @@
 02/26  [127] 0.5 miles wt.  
 02/27  [129.7] 4.9 miles w.; 1.1 miles wt.
 02/28  [128.6] 3 miles r.; 4.4 miles w.
-03/01  [127.6] 4.6 miles w.; 1.1 miles w.t.
+03/01  [127.6] 4.6 miles w.; 1.1 miles wt.
 03/02  [128.3] 1 mile w.  (Left for Atlanta)
 03/03   2 miles r.; 1.8 miles w.
 
@@ -8385,7 +8385,7 @@
 
 04/29 [129.4] 3 w.
 04/30 [129.9] 4.24 r. (@7:57); 4.8 b.
-05/01 [127.8T] 9.4 b, 
+05/01 [127.8T] 9.4 b.
 05/02 [128.2T] 4.14 r. (@ 7:43)
 05/03 [128.2T] 1.8 b.; 4.15 r. (@7:13)
 
@@ -8522,7 +8522,7 @@
 08/26 [125.0T] 13.8 b.
 08/27 [125.4T] 11.0 b. 
 08/28 [126.0T] 11.0 b. 
-08/29 [126.0T] 11.0 b., 1 w.
+08/29 [126.0T] 11.0 b.; 1 w.
 08/30 [125.8T] 1.1 w.
 
 08/31 [125.6T] 15.15 b. (Taste of Madison w/ Tam); 1 w. 
@@ -9104,7 +9104,7 @@
 01/17 [121.4T] 5.75 rt. (@8:06)
 01/18 [123.8T] 5.6 w.
 01/19 [122.2T] 5.4 w.
-01/20 [122.8T] 3.8 w,; 4.2 rt. (@8:27)
+01/20 [122.8T] 3.8 w.; 4.2 rt. (@8:27)
 01/21 [122.6T] 4 w.
 01/22 [122.8T] 5.7 w.
 01/23 [122.6T] 4.3 rt. (@8:20)
@@ -9339,7 +9339,7 @@
 08/11 [124.8T] 26 w62.; 15.7 b.
 08/12 [124.2T] 12.8 b.; 1 w.
 08/13 [125.0T] 26 e72.; 11.9 b.; 1 w.
-08/14 [124.2T] 3.8 b,; (mow both); 1 w.
+08/14 [124.2T] 3.8 b.; (mow both); 1 w.
 
 08/15 [124.6T] 18.3 b. (to MMoCA); 26 w63.; 0.6 w.
 08/16 [122.8T] 2.7 w.; 11.9 b.
@@ -9427,9 +9427,9 @@
 10/27 [123.6T] 2.45 w.
 10/28 [123.4T] 3 w.
 10/29 [122.8T] 2.93 w.
-10/30 [122.8T] 2.78 w.: 14 w68.
+10/30 [122.8T] 2.78 w.; 14 w68.
 
-10/31 [123.0T] 2.72 w.; 2.00 r, (@8:23)
+10/31 [123.0T] 2.72 w.; 2.00 r. (@8:23)
 11/01 [122.6T] 2.5 w.
 11/02 [123.0T] 3.8 w.
 11/03 [124.6T] 2.56 r. (@7:26); 2.4 w.
@@ -9445,7 +9445,7 @@
 11/12 [124.0T] 4.1 w.
 11/13 [124.0T] 3.15 w.
 
-11/14 [124.4T] 12 w68.; 2.20 w,; 5.14 r. (@8:14)
+11/14 [124.4T] 12 w68.; 2.20 w.; 5.14 r. (@8:14)
 11/15 [124.8T] 5.2 w.
 11/16 [124.2T] 2.59 r. (@7:23); 4.0 w.
 11/17 [124.6T] 4.5 w.
@@ -9625,7 +9625,7 @@
 04/18 [124.2T] 4.86 w.
 04/19 [124.8T] 20 w68.; 2.8 w.
 04/20 [124.2T] 20 w68.; 4.4 w.
-04/21 [122.8T] 20 w68.: 4.7 w.
+04/21 [122.8T] 20 w68.; 4.7 w.
 04/22 [123.6T] 16 w68.; 5.5 w.
 04/23 [123.2T] 1.08 w.; 3.74 r.(@7:52)
 
@@ -9685,7 +9685,7 @@
 06/10 [124.4T] 21 w68.; 5.7 w.
 06/11 [122.4T] 3 w.
 
-06/12  1.5 w,; 3.79 r. (@7:39. Felt strong)
+06/12  1.5 w.; 3.79 r. (@7:39. Felt strong)
 06/13 [123.6T] 20 w68.; 0.95 w.; 11.7 b.; (mow back)
 06/14 [125.8T] 11.8 b. (back hurts)
 06/15 [126.8T] 5.7 w.
@@ -9746,7 +9746,7 @@
 08/02 [123.6T] 13.9 b.; 12 w78.
 08/03 [125.0T] 14 w68.; 12.1 b.
 08/04 [124.6T] 14 w68.; 12.2 b.; 1.5 w.
-08/05 [124.2T] 12 w68.: 12.4 b.
+08/05 [124.2T] 12 w68.; 12.4 b.
 08/06 [123.4T] 3.78 r. (@7:53)
 
 08/07 [123.8T] 14 w68.; 18.57 b.
@@ -9881,7 +9881,7 @@
 11/28 [125.2T] 16 w68.; 5.8 w.
 11/29 [123.0T] 5.5 w.
 11/30 [124.4T] 3.9 w.
-12/01 [123.8 T] 16 w68.; 1.74 w. 11.3 b.
+12/01 [123.8 T] 16 w68.; 1.74 w.; 11.3 b.
 12/02 [124.2T] 3.72 w.; 1.52 r. (@8:24)
 12/03  0.4 w.
 
@@ -10412,7 +10412,7 @@
 03/08 [124.4T] 12 w68.; 4.1 w.
 03/09 [124.6T] 2.70 r. (@7:56. Pulled right calf); 2 w.
 
-03/10124.2T] 2.1 w.
+03/10 [124.2T] 2.1 w.
 03/11 [123.6] 12 w68.; 1.7 w.
 03/12 [124.4T] 14 w68.; 1.6 w.
 03/13 [125.2T] 14 w68.; 2.5 w.
@@ -10450,7 +10450,7 @@
 04/10 [124.4T] 4.2 w.
 04/11 [124.6T] 4.2 w.
 04/12 [124.4T] 8 w68.; 5.2 w.
-04/13 [124.0T] 4.0 w. o
+04/13 [124.0T] 4.0 w. 
 
 04/14 [124.0T] 3.17 rw. (1:40 r / 1:20 w alternating); 1 w.
 04/15 [124.4T] 8 w68.; 5.2 w.
@@ -11470,7 +11470,7 @@
 
 09/20 [125.8T] 29.0 b. 
 09/21 [125.2T] 12.4 b.; 0.9 w. 
-09/22 [124.8T] 11.66 b.; 0.9 w. the 
+09/22 [124.8T] 11.66 b.; 0.9 w. 
 09/23 [124.6T] 11.81 b.; 0.8 w. 
 09/24 [124.8T] 11.8 b.; 2 w.
 09/25 [125.0T] 11.9 b. (w/ LeBlanc); 3.3 w. (Some w/ Tam)
@@ -11536,7 +11536,7 @@
 11/16 [122.0T] 12 b.; 0.3 w. 
 11/17 [122.6T] (Goodman Center)
 11/18 [124.2T] 3.8 w. 
-11/19 [123.0T] 11.5 b.: 0.6 w. 
+11/19 [123.0T] 11.5 b.; 0.6 w. 
 11/20 [123.2T] 12 b.; 0.6 w. 
 11/21 [121.4T] 1.8 w. 
 
@@ -11915,7 +11915,7 @@
 10/14 [125.0T] 4.90 b.; 1.1 w.
 10/15  (To Detroit)
 
-10/16  7 miles w.  (a guess from 23000 steps.  Spectating at Detroit Marathon. Tam finished in 4:12:15; 11 of 101 in W50-54).
+10/16  7 miles w.  (a guess from 23000 steps.  Spectating at Detroit Marathon. Tam finished in 4:12:15; 11 of 101 in W50-54)
 10/17  (driving back from Detroit)
 10/18 [126.2T] h11.92 b.; 0.9 w. 
 10/19 [124.0T] 11.90 b.; 1.2 w. 
@@ -12739,7 +12739,7 @@
 10/06 [125.0T] 16.9 b.; 1.7 w.
 
 10/07 [124.0T] 10.0 b.; 1.4 w.
-10/08 [124.8T] 10.2 b.: 2 w.
+10/08 [124.8T] 10.2 b.; 2 w.
 10/09 [123.2T] 18.0 b.
 10/10 [123.6T] 15.7 b.; 3.3 w. (Tam left for CO; walks for next week are with Reddit)
 10/11 [123.2T] 13.3 b.; 6 w.
@@ -13007,7 +13007,7 @@
 05/28 [124.8T] 7.8 b.; 2.25 w.
 05/29 [123.6T] 9.5 b.
 05/30 [123.2T] 10.7 b.
-05/31 [122.8T] 6.4 b. ?
+05/31 [122.8T] 6.4 b. (?)
 06/01 [122.6T] 6.9 b. (Partly on Bell Rock Trail on Tammy’s bike); 2.07 w.
 
 06/02 [123.6T] 10.44 b; 1.2 w.
