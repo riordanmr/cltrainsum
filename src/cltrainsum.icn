@@ -67,7 +67,7 @@ procedure split(string,separator)
 end
 
 # Remove comments from input.  As with PostScript, comments 
-# start with ( and end with ). 
+# start with ( and end with ).  Comments may be embedded in other comments.
 # Returns the decommented version of the string.
 # Credit: https://www2.cs.arizona.edu/~collberg/Teaching/372/2005/Html/Html-34/
 procedure decomment(S);
@@ -83,12 +83,22 @@ procedure decomment(S);
    return S;
 end
 
-procedure procActivity(date,activity)
+procedure procActivity(adate,activity)
     activity := ltrim(trim(activity))
-    write("date: '", date, "' activity: '", activity,"'")
+    write("date: '", adate, "' activity: '", activity,"'")
 end
 
-procedure proc1line(line, iline) 
+# Proceess the data for an entire day.  The input has been partially parsed.
+# 
+procedure procParsedDay(adate, inbrack, activities)
+    every procActivity(adate,split(activities,";"))
+end
+
+# Process the data for an entire day.
+# Entry:    line is the raw lines for one day, except that any continuation lines
+#               have been collapsed into one line.
+#           iline is the line number, for debugging purposes.
+procedure procRawDay(line, iline) 
     #write("proc1line line ", iline, " oldyear=", oldyear, ": ", line)
     year := oldyear
 
@@ -127,13 +137,22 @@ procedure proc1line(line, iline)
             # 1971-08-10  26.4 miles b.
             # 123456789a1
 
-            date := line[1:11]
+            # Strip off the leading date.
+            adate := line[1:11]
             rem := ""
             if *line > 10 then {
                 rem := ltrim(line[11:1+*line])
             }
-            write("date='",date,"' rem='",rem,"' *line=",*line)
-            every procActivity(date,split(rem,";"))
+
+            # Strip off any leading info in [].  This will be weight data,
+            # plus occasionally other information like blood pressure.
+            inbrack := ""
+            if rem ? {tab(match("[")) & inbrack := tab(many('0123456789T.'));  clbr := match("]") } then {
+                rem := rem[clbr:0]
+                #write("Matched []. inbrack='",inbrack,"' clbr=",clbr," rem='", rem, "'")
+            }
+            write("date='",adate,"' inbrack='",inbrack,"' rem='",rem,"'")
+            procParsedDay(adate, inbrack, rem)
         }
     }
 
@@ -150,7 +169,7 @@ procedure readlines()
                 entireline := entireline || line[2:1+*line]
             } else {
                 if \entireline then {
-                    proc1line(entireline, iline)
+                    procRawDay(entireline, iline)
                 }
                 entireline := line
             }
@@ -158,9 +177,31 @@ procedure readlines()
         iline := iline + 1;
     }
     # Handle last line.
-    proc1line(entireline, iline)
+    procRawDay(entireline, iline)
+end
+
+procedure test1()
+    write("Welcome to test1")
+    rem := "124.8T] 8.3 b."
+    write("testing with: ",rem)
+    inbrack := ""
+    if rem ? {tab(match("[")) & inbrack := tab(many('0123456789T./')) ;  clbr := match("]") } then {
+        write("Matched. inbrack=",inbrack," clbr=",clbr)
+        rem2 := rem[clbr:0]
+        write("rem2='",rem2,"'")
+    }
+
+    rem := "[123.8T] 8.4 b."
+    write("testing with: ",rem)
+    inbrack := ""
+    if rem ? {tab(match("[")) & inbrack := tab(many('0123456789T./')) ;  clbr := match("]") } then {
+        write("Matched. inbrack=",inbrack," clbr=",clbr)
+        rem2 := rem[clbr:0]
+        write("rem2='",rem2,"'")
+    }
 end
 
 procedure main()
+    #test1()
     readlines()
 end
