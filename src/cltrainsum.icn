@@ -92,7 +92,9 @@
 
 link strings
 
-global oldyear, outfile, tableActTypes
+global oldyear, fileIndivActs, fileDays, tableActTypes
+
+record Activity(atype, aquantity)
 
 procedure ltrim(txt)
     while txt[1] == " " do {
@@ -120,6 +122,15 @@ procedure split(string,separator)
   }
 end
 
+procedure stripTrailing(str, trailChar)
+    if *str > 0 then {
+        if str[-1] == trailChar then {
+            str := str[1:*str]
+        }
+    }
+    return str
+end
+
 # Remove comments from input.  As with PostScript, comments 
 # start with ( and end with ).  Comments may be embedded in other comments.
 # Returns the decommented version of the string.
@@ -138,10 +149,12 @@ procedure decomment(S);
 end
 
 # Given a raw individual activity, parse and return its components.
+# Exit: Returns an Activity record.  This is for activity "" if there was
+#       no actual activity.
 procedure procActivity(adate,activity,iline)
     activity := ltrim(trim(activity))
     if activity == "" then {
-        return ""
+        return Activity("",0)
     }
     #write("date: '", adate, "' activity: '", activity,"'")
     # Crack off the leading quantity.
@@ -162,15 +175,34 @@ procedure procActivity(adate,activity,iline)
             units := ""
         }
     }
-    #write(outfile,"  quant='", quant,"' units='",units,"' activityType='",activityType,"'")
+    # Strip trailing period.
+    activityType := stripTrailing(activityType, ".")
+    # Fold to lowercase.
+    activityType := map(activityType,&ucase,&lcase)
+    #write(fileIndivActs,"  quant='", quant,"' units='",units,"' activityType='",activityType,"'")
+    # Increment the number of times this activity has been performed.
     tableActTypes[activityType] +:= 1
-    write(outfile,adate,",",quant,",",units,",",activityType)
+    # Write a line in the CSV file that contains one line per activity.
+    write(fileIndivActs,adate,",",quant,",",units,",",activityType)
+    # Create the activity record to return.
+    thisActivity := Activity(activityType,quant)
+    return thisActivity
 end
 
 # Proceess the data for an entire day.  The input has been partially parsed.
 # 
 procedure procParsedDay(adate, inbrack, activities, iline)
-    every procActivity(adate,split(activities,";"), iline)
+    tblActivitiesForOneDay := table(0)
+    every act:= procActivity(adate,split(activities,";"), iline) do {
+        if act.atype ~== "" then {
+            tblActivitiesForOneDay[act.atype] := act.aquantity
+        }
+    }
+    # Write a line to a CSV file with certain specific activities.
+    write(fileDays, adate,",", tblActivitiesForOneDay["w"],",", 
+        tblActivitiesForOneDay["r"], ",", 
+        tblActivitiesForOneDay["b"], ",", 
+        tblActivitiesForOneDay["s"])
 end
 
 # Process the data for an entire day.
@@ -247,7 +279,8 @@ procedure wrapup()
 end
 
 procedure readlines()
-    outfile := open("act.csv", "w")
+    fileIndivActs := open("act.csv", "w")
+    fileDays := open("days.csv", "w")
     tableActTypes := table(0)
     entireline := &null
     oldyear := 0
@@ -319,7 +352,23 @@ procedure test1()
         write("testFail(0) succeeded - Error!")
     } else {
         write("testFail(0) failed, as expected")
-    }    
+    }
+
+    # Test stripTrailing
+    str := "hi"
+    result := stripTrailing(str,".")
+    if result == "hi" then {
+        write("stripTrailing of '", str, "' succeeded")
+    } else {
+        write("!! stripTrailing of '", str, "' incorrectly returned '",result,"'")
+    }
+    str := "hi."
+    result := stripTrailing(str,".")
+    if result == "hi" then {
+        write("stripTrailing of '", str, "' succeeded")
+    } else {
+        write("!! stripTrailing of '", str, "' incorrectly returned '",result,"'")
+    }
 end
 
 procedure main(args)
