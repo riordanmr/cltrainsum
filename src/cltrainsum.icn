@@ -23,6 +23,18 @@
 # which may be nested.  Most days contain only one line, but multiple lines for
 # a given date are possible, in which case subsequent lines start with a +
 # in column 1.
+# Each day has zero or more activities.  If there is more than one activity,
+# the activities are separated by ";".  Each activity has a quantity,
+# option units, and a type.  Activity types normally end with a period;
+# however, this convention was not always followed in earlier years, so the
+# period is optional.  Most activity types are a single character (aside from
+# the trailing period).  However, there are exceptions, such as:
+# ll for leg lifts
+# wNN for weight lifting (bench presses) of NN pounds.  (Note that confusingly,
+#    w without NN means something completely different, namely walking.)
+# br for biking during a race.  This also applies to rr and sr for running and
+#    swimming during a race.
+# 
 # Here's an example:
 #   07/23  0.6 miles sr; 18.3 miles br.; 4.6 miles rr.  (Capitol City Triathlon.
 #   +      Think swim may have been short. 
@@ -37,6 +49,46 @@
 # a Saturday and a Sunday.
 # The first day of every year contains the sequence (*** nnnn )
 # where nnnn is the year. 
+#
+# Here are the activity types in CLTRAINEW.  They are case insensitive.
+# Note that the activity type descriptions given at the top of the file
+# are not reliable; many of these were entered early on by Paul and Glenn
+# and not followed by Mark.
+#
+# b  - bicycling
+# bi - bicycling indoors
+# br - bicycling during a race
+# bt - probably some type of bicycling.  I think it's been used inconsistently for
+#      bicycling for transportation and bicycling on a trainer (indoors).
+# c  - canoeing
+# dNN - lifting dumbbells with weight NN pounds.
+# i  - indoor cycling, typically on rollers or on a trainer
+# ll - leg lifts
+# pu - pushups
+# puk - pushups on knees
+# r  - running
+# ri - running, probably indoors (despite cltrainew saying "intensely")
+# rowing - rowing, probably on a rowing machine
+# rr - running in a race
+# rt - running on a treadmill 
+# rw - run/walk.  But most run/walks are recorded as walks.
+# s  - swimming
+# sl - unknown.  Probably some calisthenics like side leg lift.
+# smN - swim machine with N pound weights.
+# sr - swimming during a race.
+# stairs - climbing stairs
+# t  - running (or walking?) on a treadmill
+# w  - walking
+# wNN - bench-pressing (weight-lifting) NN pounds
+# walk - walking
+# walking - walking
+# wi - unknown.  Probably walking of some type; only logged once on a day I also walked normally.
+# wt - walking on a treadmill
+
+# Normal usage: 
+#   icont cltrainsum.icn -x <../data/cltrainewrecent.txt
+# Test usage:
+#   icont cltrainsum.icn -x -t 
 
 link strings
 
@@ -88,7 +140,10 @@ end
 # Given a raw individual activity, parse and return its components.
 procedure procActivity(adate,activity,iline)
     activity := ltrim(trim(activity))
-    write("date: '", adate, "' activity: '", activity,"'")
+    if activity == "" then {
+        return ""
+    }
+    #write("date: '", adate, "' activity: '", activity,"'")
     # Crack off the leading quantity.
     if activity ? { quant := tab(many('0123456789.')) & rem := tab(many(&ascii)) } then {
         #write("  quant='", quant,"' rem='", rem, "'")
@@ -147,7 +202,7 @@ procedure procRawDay(line, iline)
         } else if line[3] == "/" then {
             line[3] := "-"
             line := year || "-" || line
-            write(line)
+            #write(line)
             if *line < 10 then {
                 write("** Line ", iline, " too short: ", line)
                 lineGood := 0
@@ -176,7 +231,7 @@ procedure procRawDay(line, iline)
                 rem := replace(rem,"[" || inbrack || "]", "")
                 #write("Matched []. inbrack='",inbrack,"' clbr=",clbr," rem='", rem, "'")
             }
-            write("date='",adate,"' inbrack='",inbrack,"' rem='",rem,"'")
+            #write("date='",adate,"' inbrack='",inbrack,"' rem='",rem,"'")
             procParsedDay(adate, inbrack, rem, iline)
         }
     }
@@ -186,7 +241,7 @@ end
 procedure wrapup()
     #sortedList := sort(tableActTypes,4)
     every act := !sort(tableActTypes,2) do {
-        write(image(act[1]),"\t", act[2])
+        write(act[1],"\t", act[2])
     }
     #every write(k:=key(tableActTypes),"\t",tableActTypes[k])
 end
@@ -276,7 +331,7 @@ procedure main(args)
         }
         i:=i+1
     }
-    
+
     if \test then {
         test1()
     } else {
