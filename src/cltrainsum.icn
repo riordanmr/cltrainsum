@@ -73,7 +73,7 @@
 # rt - running on a treadmill 
 # rw - run/walk.  But most run/walks are recorded as walks.
 # s  - swimming
-# sl - unknown.  Probably some calisthenics like side leg lift.
+# sl - unknown.  Probably some calisthenics like side leg lifts.
 # smN - swim machine with N pound weights.
 # sr - swimming during a race.
 # stairs - climbing stairs
@@ -84,6 +84,17 @@
 # walking - walking
 # wi - unknown.  Probably walking of some type; only logged once on a day I also walked normally.
 # wt - walking on a treadmill
+#
+# Here are the explicit units.  Note that often units are omitted:
+# hour
+# k
+# meter
+# meters
+# mile
+# miles
+# min
+# minutes
+# yards
 
 # Normal usage: 
 #   icont cltrainsum.icn -x <../data/cltrainewrecent.txt
@@ -92,9 +103,9 @@
 
 link strings
 
-global oldyear, fileIndivActs, fileDays, tableActTypes
+global oldyear, fileIndivActs, fileDays, tableActTypes, tableUnits
 
-record Activity(atype, aquantity)
+record Activity(atype, aunits, aquantity)
 
 procedure ltrim(txt)
     while txt[1] == " " do {
@@ -148,13 +159,87 @@ procedure decomment(S);
    return S;
 end
 
+procedure mapActivityType(activityType)
+    static tableActToStdAct
+    initial {
+        tableActToStdAct := table()
+        tableActToStdAct["b"] := "b"
+        tableActToStdAct["bi"] := "b"
+        tableActToStdAct["br"] := "b"
+        tableActToStdAct["bt"] := "b"
+        tableActToStdAct["bicycling"] := "b"
+        tableActToStdAct["c"] := "c"
+        tableActToStdAct["i"] := "b"
+        tableActToStdAct["ll"] := ""
+        tableActToStdAct["pu"] := ""
+        tableActToStdAct["puk"] := ""
+        tableActToStdAct["r"] := "r"
+        tableActToStdAct["ri"] := "r"
+        tableActToStdAct["rowing"] := ""
+        tableActToStdAct["rr"] := "r"
+        tableActToStdAct["rt"] := "r"
+        tableActToStdAct["rw"] := "w"
+        tableActToStdAct["s"] := "s"
+        tableActToStdAct["sl"] := ""
+        tableActToStdAct["sr"] := "s"
+        tableActToStdAct["stairs"] := ""
+        tableActToStdAct["t"] := "r"
+        tableActToStdAct["w"] := "w"
+        tableActToStdAct["walk"] := "w"
+        tableActToStdAct["walking"] := "w"
+        tableActToStdAct["wi"] := "w"
+        tableActToStdAct["wt"] := "w"
+    }
+    mappedAct := activityType
+    if \tableActToStdAct[activityType] then {
+        mappedAct := tableActToStdAct[activityType]
+    }
+    return mappedAct
+end
+
+# Given an activity type, units, and quantity, return a possibly
+# modified quantity in the standard units for that activity.
+procedure mapQuantity(activityType, units, quantity)
+    if activityType == "r" then {
+        if units == "" | units == "miles" | units == "mile" then {
+        } else if units == "k" then {
+            quantity *:= 0.6215
+        } else if units == "min" | units == "minutes" then {
+            quantity *:= quantity * 0.125
+        } else {
+            write("!! bad units for activityType=",activityType," units=", units, " quantity=",quantity)
+        }
+        units := "miles"
+    } else if activityType == "s" then {
+        if units == "miles" | units == "mile" then {
+        } else if units == "yards" then {
+            quantity /:= 1760.0
+        } else if units == "meters" | units == "meter" then {
+            quantity /:= 1609.0
+        } else {
+            write("!! bad units for activityType=",activityType," units=", units, " quantity=",quantity)
+        }
+        units := "miles"
+    } else if activityType == "b" then {
+        if units == "" | units == "miles"| units == "mile" then {
+        } else if units == "min" | units == "minutes" then {
+            # Convert from minutes to miles.
+            quantity := (quantity / 60.0) * 9.0
+        } else {
+            write("!! bad units for activityType=",activityType," units=", units, " quantity=",quantity)
+        }
+        units := "miles"
+    }
+    return Activity(activityType, units, quantity)
+end
+
 # Given a raw individual activity, parse and return its components.
 # Exit: Returns an Activity record.  This is for activity "" if there was
 #       no actual activity.
 procedure procActivity(adate,activity,iline)
     activity := ltrim(trim(activity))
     if activity == "" then {
-        return Activity("",0)
+        return Activity("","",0)
     }
     #write("date: '", adate, "' activity: '", activity,"'")
     # Crack off the leading quantity.
@@ -177,16 +262,22 @@ procedure procActivity(adate,activity,iline)
     }
     # Strip trailing period.
     activityType := stripTrailing(activityType, ".")
+    units := stripTrailing(units, ".")
     # Fold to lowercase.
     activityType := map(activityType,&ucase,&lcase)
-    #write(fileIndivActs,"  quant='", quant,"' units='",units,"' activityType='",activityType,"'")
+    # Map similar activity codes to the standard activity code for that activity.
+    activityType := mapActivityType(activityType)
+    # Convert the quantity to the standard units (typically miles) for that activity type.
+    modActivity := mapQuantity(activityType, units, quant)
+
     # Increment the number of times this activity has been performed.
-    tableActTypes[activityType] +:= 1
+    tableActTypes[modActivity.atype] +:= 1
+    tableUnits[modActivity.aunits] +:= 1
+
     # Write a line in the CSV file that contains one line per activity.
-    write(fileIndivActs,adate,",",quant,",",units,",",activityType)
-    # Create the activity record to return.
-    thisActivity := Activity(activityType,quant)
-    return thisActivity
+    write(fileIndivActs,adate,",",modActivity.aquantity,",",modActivity.aunits,",",modActivity.atype)
+
+    return modActivity
 end
 
 # Proceess the data for an entire day.  The input has been partially parsed.
@@ -194,7 +285,7 @@ end
 procedure procParsedDay(adate, inbrack, activities, iline)
     tblActivitiesForOneDay := table(0)
     every act:= procActivity(adate,split(activities,";"), iline) do {
-        if act.atype ~== "" then {
+        if \act.atype & act.atype ~== "" then {
             tblActivitiesForOneDay[act.atype] := act.aquantity
         }
     }
@@ -271,17 +362,24 @@ procedure procRawDay(line, iline)
 end
 
 procedure wrapup()
-    #sortedList := sort(tableActTypes,4)
-    every act := !sort(tableActTypes,2) do {
-        write(act[1],"\t", act[2])
+    # List all (converted) activity types and how often they appeared.
+    #every act := !sort(tableActTypes,2) do {
+    #    write(act[1],"\t", act[2])
+    #}
+    
+    write("")
+    # List all (converted) units and how often they appeared.
+    every units := !sort(tableUnits,2) do {
+        write("'",units[1],"'","\t", units[2])
     }
-    #every write(k:=key(tableActTypes),"\t",tableActTypes[k])
+    
 end
 
 procedure readlines()
     fileIndivActs := open("act.csv", "w")
     fileDays := open("days.csv", "w")
     tableActTypes := table(0)
+    tableUnits := table(0)
     entireline := &null
     oldyear := 0
     iline := 0
