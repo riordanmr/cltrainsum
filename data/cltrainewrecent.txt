@@ -2606,7 +2606,7 @@
 10/16
 10/17  6 miles r.  (Fast.  Felt good.  77 deg F earlier!  Ran in dark.)
 10/18
-10/19  6 mils r.  (Very slow.  But weather good.)
+10/19  6 miles r.  (Very slow.  But weather good.)
 10/20
 10/21
 10/22  10 miles r.  (Had non-instant coffee grounds.  9 BMs before &
@@ -3568,7 +3568,7 @@
 11/13  2 miles w.; 212 pu.
 11/14    148 pu.
 11/15  3.5 miles r.; 132 pu.
-11/16  5.5 miles. r. (T-shirt & shorts; 50+ deg F.  Neoprene knee brace
+11/16  5.5 miles r. (T-shirt & shorts; 50+ deg F.  Neoprene knee brace
 +      really helped.); 112 pu.
 
 11/17    172 pu.
@@ -4344,7 +4344,7 @@
 08/31  15.42 miles b.; 72 pu.
 09/01  7.84 miles b.; 84 pu.
 09/02  4.10 miles b.; 3.4 miles w.; 108 pu.
-09/03  2 miles r.; 4.1 iles w.; 100 pu.
+09/03  2 miles r.; 4.1 miles w.; 100 pu.
 09/04  1.5 miles w.; 80 pu.
 09/05  27.62 miles b. (15.2 mph ave Mendota loop); 3.1 miles w.; 104 pu.
 
@@ -7545,7 +7545,7 @@
 
 04/09  [130] 18.60 miles b; 1 mile w. (First walk since hurt right calf)
 04/10  [129.5] 4.85 miles b.; 2.3 miles w.
-04/11  [129] 8.37 miless b.; 1.5 miles w.
+04/11  [129] 8.37 miles b.; 1.5 miles w.
 04/12  [130] 9.00 miles b. (actually 3 were walking); 0.4 miles w.
 04/13  [130] 2.6 miles w.; 6.55 miles b.
 04/14  [130] 6.66 miles b.; 2 miles w.
@@ -8437,7 +8437,7 @@
 06/13 [129.0T] 4.62 r. (@7:29); 4.8 b.; 0.6 w. 
 06/14 [130.5] 1.6 w.
 
-06/15 [127.0T] 1 r. (slow); 9,20 b.; (mow back)
+06/15 [127.0T] 1 r. (slow); 9.20 b.; (mow back)
 06/16 [125.8T] 5.0 b.; (mow front Gregg; front Highcliff)
 06/17 [125.8T] 4.5 r.; 4.8 b. 
 06/18 [126.6T] 5.0 b.; (mow part back Gregg)
@@ -8805,7 +8805,7 @@
 05/01 [123.2T] 4 rt. (slow)
 05/02 [123.0T] (mow front)
 
-05/03 [123.4T] 9,0 b. (w/ Tam); 2.50 w.
+05/03 [123.4T] 9.0 b. (w/ Tam); 2.50 w.
 05/04 [122.0T] 3.8 w.
 05/05 [123.0T] 11.0 b.
 05/06 [123.0T] 4.5 w.
@@ -9721,7 +9721,7 @@
 07/11 [124.6T] 4.3 w.
 07/12 [124.8T] 12 w68.; 2.09 w.; 11.7 b.
 07/13 [124.4T] 12 w68.; 1.68 w.; 11.9 b.
-07/14 [123.2T] 14 w68.; 12.4 b;. 1.84 w.
+07/14 [123.2T] 14 w68.; 12.4 b.; 1.84 w.
 07/15 [123.4T] 14 w68.; 2.3 w.; 12.4 b.
 07/16 [124.0T] 2.16 w. (in Livonia)
 
@@ -11400,7 +11400,7 @@
 07/20 [124.4T] 8.9 b.; 2.4 w. 
 07/21 [125.6T] 12.5 b.; 0.6 w. 
 07/22 [126.8T] 12.5 b.; 1.8 w. 
-07/23 [126.0T] 12.k3 b.; 1.3 w. 
+07/23 [126.0T] 12.3 b.; 1.3 w. 
 07/24 [125.6T] 3.5 b. 
 07/25 [124.4T] (left for Sedona trip 3)
 
@@ -12930,7 +12930,7 @@
 03/22 [124.4T] 2.38 w. (Pyramid trail); 7.6 b.
 03/23 [124.4T] 8.0 b.; 2.2 w.
 
-03/24 [123.6T] 11.5l b.
+03/24 [123.6T] 11.5 b.
 03/25 [124.8T] 11.0 b.; 1.6 w.
 03/26 [123.4T] 9.6 b.
 03/27 [124.2T] 10.1 b.
