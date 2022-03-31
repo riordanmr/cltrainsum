@@ -203,19 +203,24 @@ procedure mapQuantity(activityType, units, quantity)
     if activityType == "r" then {
         if units == "" | units == "miles" | units == "mile" then {
         } else if units == "k" then {
-            quantity *:= 0.6215
+            quantity *:= 0.621371
         } else if units == "min" | units == "minutes" then {
-            quantity *:= quantity * 0.125
+            quantity *:= 0.125
         } else {
             write("!! bad units for activityType=",activityType," units=", units, " quantity=",quantity)
         }
         units := "miles"
     } else if activityType == "s" then {
-        if units == "miles" | units == "mile" then {
+        if units == "" | units == "miles" | units == "mile" then {
         } else if units == "yards" then {
             quantity /:= 1760.0
         } else if units == "meters" | units == "meter" then {
             quantity /:= 1609.0
+        } else if units == "k" then {
+            quantity *:= 0.621371
+        } else if units == "min" | units == "minutes" then {
+            # Not sure how fast I used to swim.
+            quantity *:= (1.0/25.0)
         } else {
             write("!! bad units for activityType=",activityType," units=", units, " quantity=",quantity)
         }
@@ -225,6 +230,11 @@ procedure mapQuantity(activityType, units, quantity)
         } else if units == "min" | units == "minutes" then {
             # Convert from minutes to miles.
             quantity := (quantity / 60.0) * 9.0
+        } else if units == "hour" | units == "hours" then {
+            # Convert from hours to miles.
+            quantity := quantity * 9.0
+        } else if units == "k" then {
+            quantity *:= 0.621371
         } else {
             write("!! bad units for activityType=",activityType," units=", units, " quantity=",quantity)
         }
