@@ -291,7 +291,6 @@ procedure procActivity(adate,activity,iline)
 end
 
 # Proceess the data for an entire day.  The input has been partially parsed.
-# 
 procedure procParsedDay(adate, inbrack, activities, iline)
     tblActivitiesForOneDay := table(0)
     every act:= procActivity(adate,split(activities,";"), iline) do {
@@ -371,6 +370,7 @@ procedure procRawDay(line, iline)
 
 end
 
+# Wrap up after all lines have been processed.
 procedure wrapup()
     # List all (converted) activity types and how often they appeared.
     #every act := !sort(tableActTypes,2) do {
@@ -385,6 +385,7 @@ procedure wrapup()
     
 end
 
+# Process the entire input.
 procedure readlines()
     fileIndivActs := open("act.csv", "w")
     fileDays := open("days.csv", "w")
@@ -480,6 +481,7 @@ procedure test1()
 end
 
 procedure main(args)
+    # Crack the command line arguments.
     test := &null
     i := 1
     while i <= *args do {
