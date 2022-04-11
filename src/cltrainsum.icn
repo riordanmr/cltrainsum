@@ -404,6 +404,7 @@ procedure procRawDay(line, iline)
                 myNextDate := nextDate(myPrevDate.ayear, myPrevDate.amonth, myPrevDate.aday)
                 if thisDate.ayear = myNextDate.ayear & thisDate.amonth = myNextDate.amonth &
                     thisDate.aday = myNextDate.aday then {
+                    # Yes, this is the next day, as expected.
                 } else {
                     write("!! on line ", iline, " date ", adate, " is wrong; expected ", myNextDate.ayear, ",", myNextDate.amonth, ",", myNextDate.aday)
                 }
