@@ -104,8 +104,11 @@
 link strings
 
 global oldyear, fileIndivActs, fileDays, tableActTypes, tableUnits
+global prevYear, prevMonth, prevDay
 
 record Activity(atype, aunits, aquantity)
+
+record CDate(ayear, amonth, aday)
 
 procedure ltrim(txt)
     while txt[1] == " " do {
@@ -305,12 +308,56 @@ procedure procParsedDay(adate, inbrack, activities, iline)
         tblActivitiesForOneDay["s"])
 end
 
+# Parse the incoming date into year, month, day
+# Entry:    adate is of the form YYYY-MM-DD
+# Exit:     Returns a CDate object with the year, month, day.
+#           They are set to 0 if the parsing failed.
+procedure parseDate(adate)
+    year := 0
+    month := 0
+    day := 0
+    adate ? { year := tab(many(&digits)) & tab(match("-")) & month := tab(many(&digits)) &
+        tab(match("-")) & day := tab(many(&digits)) }
+    return CDate(0+year, 0+month, 0+day)
+end
+
+# Given a date (year, month, day), return the next date.
+# Exit: Returns a CDate object.
+procedure nextDate(ayear, amonth, aday)
+    static listDaysInMonth
+    initial {
+        listDaysInMonth := [31,28,31,30,31,30,31,31,30,31,30,31]
+    }
+    aday +:= 1
+    days_in_month := listDaysInMonth[amonth]
+    if amonth = 2 then {
+        if ayear%4 = 0 then {
+            # !/mrr This test will not properly detect all leapyears.
+            days_in_month +:= 1
+        }
+    }
+    if aday > days_in_month then {
+        aday := 1
+        amonth +:= 1
+        if amonth > 12 then {
+            ayear +:= 1
+            amonth := 1
+            aday := 1
+        }
+    }
+    return CDate(ayear, amonth, aday)
+end
+
 # Process the data for an entire day.
 # Entry:    line is the raw lines for one day, except that any continuation lines
 #               have been collapsed into one line.
 #           iline is the line number, for debugging purposes.
 procedure procRawDay(line, iline) 
     #write("proc1line line ", iline, " oldyear=", oldyear, ": ", line)
+    static myPrevDate
+    initial {
+        myPrevDate := CDate(666,666,666)
+    }
     year := oldyear
 
     # Look for text like:   *** 2001   and if present, extract the year from it.
@@ -350,6 +397,19 @@ procedure procRawDay(line, iline)
 
             # Strip off the leading date.
             adate := line[1:11]
+
+            # Check that this is the next day.
+            thisDate := parseDate(adate)
+            if myPrevDate.ayear ~= 666 then {
+                myNextDate := nextDate(myPrevDate.ayear, myPrevDate.amonth, myPrevDate.aday)
+                if thisDate.ayear = myNextDate.ayear & thisDate.amonth = myNextDate.amonth &
+                    thisDate.aday = myNextDate.aday then {
+                } else {
+                    write("!! on line ", iline, " date ", adate, " is wrong; expected ", myNextDate.ayear, ",", myNextDate.amonth, ",", myNextDate.aday)
+                }
+            }
+            myPrevDate := thisDate
+
             rem := ""
             if *line > 10 then {
                 rem := ltrim(line[11:1+*line])
@@ -477,6 +537,42 @@ procedure test1()
         write("stripTrailing of '", str, "' succeeded")
     } else {
         write("!! stripTrailing of '", str, "' incorrectly returned '",result,"'")
+    }
+
+    # Test parseDate
+    str := "2022-04-10"
+    result := parseDate(str)
+    if result.ayear = 2022 & result.amonth = 4 & result.aday = 10 then {
+        write("parseDate of ",str," succeeded")
+    } else {
+        write("!! parseDate of ",str," incorrectly returned ", result.ayear,",",result.amonth,",",result.aday)
+    }
+
+    str := "2022-0j-10"
+    result := parseDate(str)
+    if result.aday = 0 then {
+        write("parseDate of ",str," correctly failed")
+    } else {
+        write("!! parseDate of ",str," incorrectly succeeded")
+    }
+
+    # Test nextDate
+    myDate := parseDate("2022-04-10")
+    result := nextDate(myDate.ayear, myDate.amonth, myDate.aday)
+    if result.ayear = 2022 & result.amonth=4 & result.aday = 11 then {
+        write("nextDate(",myDate.ayear,",", myDate.amonth, ",",myDate.aday,") succeeded")
+    } else {
+        write("!! nextDate(",myDate.ayear,"-",myDate.amonth,"-",myDate.aday,") incorrectly returned ",result.ayear,
+            " ", result.amonth, " ", result.aday)
+    }
+
+    myDate := parseDate("2022-04-30")
+    result := nextDate(myDate.ayear, myDate.amonth, myDate.aday)
+    if result.ayear = 2022 & result.amonth=5 & result.aday = 1 then {
+        write("nextDate(",myDate.ayear,",", myDate.amonth, ",",myDate.aday,") succeeded")
+    } else {
+        write("!! nextDate(",myDate.ayear,"-",myDate.amonth,"-",myDate.aday,") incorrectly returned ",result.ayear,
+            " ", result.amonth, " ", result.aday)
     }
 end
 
