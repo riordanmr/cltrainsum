@@ -5,7 +5,7 @@ This program, written in the Icon programming language, summarizes
 (exercise) training log data from a file usually known as CLTRAINEW.
 
 CLTRAINEW was created by Paul S. Wolberg in January 1985, to track
-training done by a Computer Laboratory (CL) team preparing for the MSU
+training done by a CL (Computer Laboratory) team preparing for the MSU
 (Michigan State University) Classic team triathlon.
 Later, the file devolved into a log for training done by me,
 Mark Riordan.  
