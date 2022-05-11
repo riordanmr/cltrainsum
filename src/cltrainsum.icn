@@ -4,7 +4,7 @@
 # CLTRAINEW was created by Paul S. Wolberg in January 1985, to track
 # training done by a team preparing for the MSU
 # (Michigan State University) Classic team triathlon.
-# Later, the file devolved into a log for training done by me,
+# Later, the file devolved into a log for training done only by me,
 # Mark Riordan.  
 #
 # Entries in the log are in chronological order.  Entries in the log
@@ -42,9 +42,14 @@
 # text on a mobile phone.  If units are omitted, they default to a fixed unit
 # based on activity type (usually miles), like this:
 #   9/09 [124.8T] 13.29 b.; 2.3 w. 
+#
 # Body weight in pounds may be present in square brackets.  If followed by T,
 # the weight was measured on Tam's old scale, which is believed to read 
-# 0.8 pounds low.
+# 0.8 pounds low.  In a few cases, blood pressure and pulse information are 
+# included after the weight, preceded by a comma, like this: [127.5,104/66,89]
+# However, I didn't record this for long, so it's probably not worth processing
+# BP and pulse data.
+#
 # Blank lines may be present, and can be ignored.  They should occur only between
 # a Saturday and a Sunday.
 # The first day of every year contains the sequence (*** nnnn )
@@ -293,8 +298,39 @@ procedure procActivity(adate,activity,iline)
     return modActivity
 end
 
+# Parse weight info and return the adjusted weight in pounds.
+# Entry:    inbrack is text in brackets.  It can have these forms:
+#                   126.5       weight in pounds
+#                   126.6,103/67,67     weight in pounds, BP, pulse
+#                   127.6,113/66,80 ae  same, but after eating breakfast
+#                   126.6T      weight in pounds minus 0.8 pounds.  T means
+#                               Tam's scale, which reads 0.8 pounds low.
+# Exit:     Returns the weight in pounds, or 0 if there was none.
+procedure parseWeight(inbrack)
+    weight := 0
+    if inbrack ? {extweight := tab(many('0123456789.')) } then {
+        weight := extweight
+        if *inbrack > *extweight then {
+            inbrack ? { move(*inbrack - 1); remaining := tab(many(&ascii)) }
+            #write("parseWeight inbrack=", inbrack, " extweight=", extweight, " remaining='", remaining, "'")
+            # We have a weight.  Is it followed by "T"?
+            if remaining ? "T" then {
+                weight := weight + 0.8
+            }
+        }
+    }
+    return weight
+end
+
 # Proceess the data for an entire day.  The input has been partially parsed.
 procedure procParsedDay(adate, inbrack, activities, iline)
+    weight := parseWeight(inbrack)
+    if weight ~= 0 then {
+        if weight > 100 & weight < 140 then {
+        } else {
+            write("!! invalid weight on line ",iline,": ", weight, " inbrack=", inbrack)
+        }
+    }
     tblActivitiesForOneDay := table(0)
     every act:= procActivity(adate,split(activities,";"), iline) do {
         if \act.atype & act.atype ~== "" then {
@@ -302,7 +338,9 @@ procedure procParsedDay(adate, inbrack, activities, iline)
         }
     }
     # Write a line to a CSV file with certain specific activities.
-    write(fileDays, adate,",", tblActivitiesForOneDay["w"],",", 
+    write(fileDays, adate,",", 
+        weight,",",
+        tblActivitiesForOneDay["w"],",", 
         tblActivitiesForOneDay["r"], ",", 
         tblActivitiesForOneDay["b"], ",", 
         tblActivitiesForOneDay["s"])
@@ -370,6 +408,8 @@ procedure procRawDay(line, iline)
         }
         oldyear := year
     }
+
+    # Remove comments, which are PostScript-style (text surrounded by parentheses).
     line := decomment(line)
     line := trim(line)
 
@@ -418,7 +458,10 @@ procedure procRawDay(line, iline)
 
             # Extract the info in [].  This will be weight data,
             # plus occasionally other information like blood pressure.
-            # Note that older records had this at the end, rather than the beginning.
+            # Note that older records had this at the end, like this:
+            # 09/16  13.96 miles b.; 1.6 miles w.  [131.5 mw.]
+            # rather than the beginning, like this (starting 2006-03-05):
+            # 03/05  [130.5] 6.2 miles r.; 2.7 miles w.
             inbrack := ""
             if rem ? {tab(find("[")) & move(1) & inbrack := tab(many(&ascii -- ']')) & clbr := match("]") } then {
                 rem := replace(rem,"[" || inbrack || "]", "")
@@ -575,6 +618,31 @@ procedure test1()
         write("!! nextDate(",myDate.ayear,"-",myDate.amonth,"-",myDate.aday,") incorrectly returned ",result.ayear,
             " ", result.amonth, " ", result.aday)
     }
+
+    inbrack := "126.5"
+    result := parseWeight(inbrack)
+    if result = 126.5 then {
+        write("parseWeight(", inbrack, ") succeeded")
+    } else {
+        write("!! parseWeight(", inbrack, ") incorrectly returned ", result)
+    }
+
+    inbrack := ""
+    result := parseWeight(inbrack)
+    if result = 0 then {
+        write("parseWeight(", inbrack, ") succeeded")
+    } else {
+        write("!! parseWeight(", inbrack, ") incorrectly returned ", result)
+    }    
+
+    inbrack := "127.8T"
+    result := parseWeight(inbrack)
+    if result = 128.6 then {
+        write("parseWeight(", inbrack, ") succeeded")
+    } else {
+        write("!! parseWeight(", inbrack, ") incorrectly returned ", result)
+    }
+
 end
 
 procedure main(args)
