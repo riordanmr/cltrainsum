@@ -1,3 +1,3 @@
-rm cltrainsum
-icont cltrainsum.icn
-./cltrainsum <../data/cltrainewrecent.txt
+rm cltrainparse
+icont cltrainparse.icn
+./cltrainparse <../data/cltrainewrecent.txt

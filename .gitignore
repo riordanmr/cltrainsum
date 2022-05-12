@@ -1,5 +1,6 @@
 .DS_Store
 src/cltrainsum
+src/cltrainparse
 cltrainsum
 cltrainew
 act.csv
