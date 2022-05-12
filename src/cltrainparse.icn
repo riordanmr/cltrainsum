@@ -102,9 +102,9 @@
 # yards
 
 # Normal usage: 
-#   icont cltrainsum.icn -x <../data/cltrainewrecent.txt
+#   icont cltrainparse.icn -x <../data/cltrainewrecent.txt
 # Test usage:
-#   icont cltrainsum.icn -x -t 
+#   icont cltrainparse.icn -x -t 
 
 link strings
 
