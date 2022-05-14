@@ -1,0 +1,128 @@
+# cltrainsum.icn - a program, written in the Icon programming language, 
+# to summarize (exercise) training log data emitted from cltrainparse.icn.
+# The ultimate source of the data is a file usually known as CLTRAINEW.
+#
+# The input file contains lines like this:
+# 2022-03-08,123.6,2.63,0,10.3,0
+# where the columns are:
+# date,weight in pounds,miles walked,miles run,miles biked,miles swum
+#
+# Mark Riordan  2022-05-11
+
+record CDate(ayear, amonth, aday)
+record CWorkoutDay(date, weight, walk, run, bike, swim)
+record CYearSummary(totweight, nweight, totwalk, totrun, totbike, totswim)
+
+global tableYears
+
+# Parse the incoming date into year, month, day
+# Entry:    adate is of the form YYYY-MM-DD
+# Exit:     Returns a CDate object with the year, month, day.
+#           They are set to 0 if the parsing failed.
+procedure parseDate(adate)
+    year := 0
+    month := 0
+    day := 0
+    adate ? { year := tab(many(&digits)) & tab(match("-")) & month := tab(many(&digits)) &
+        tab(match("-")) & day := tab(many(&digits)) }
+    return CDate(0+year, 0+month, 0+day)
+end
+
+procedure parseline(line)
+    notcomma := &ascii -- ','
+    if line ? { 
+        date := tab(many(notcomma)) & move(1) & 
+        weight := tab(many(notcomma)) & move(1) &
+        walk := tab(many(notcomma)) & move(1) &
+        run := tab(many(notcomma)) & move(1) &
+        bike := tab(many(notcomma)) & move(1) &
+        swim := tab(many(notcomma))
+      } then {
+        #write("parseline: date=",date," weight=",weight," walk=",walk," run=",run," bike=",bike," swim=",swim)
+        thisDate := parseDate(date)
+        return CWorkoutDay(thisDate, weight, walk, run, bike, swim)
+    } else {
+        write("!! failed to parse: ", line)
+    }
+end
+
+procedure processline(line)
+    if myWorkout := parseline(line) then {
+        # Look up existing entry for this year
+        yeardata := tableYears[myWorkout.date.ayear]
+        if /yeardata then {
+            #write("processline: creating empty CYearSummary for ",myWorkout.date.ayear)
+            yeardata := CYearSummary(0,0,0,0,0,0)
+        }
+        yeardata.totwalk := yeardata.totwalk + myWorkout.walk
+        yeardata.totrun := yeardata.totrun + myWorkout.run
+        yeardata.totbike := yeardata.totbike + myWorkout.bike
+        yeardata.totswim := yeardata.totswim + myWorkout.swim
+        if myWorkout.weight > 0 then {
+            yeardata.totweight := yeardata.totweight + myWorkout.weight
+            yeardata.nweight := yeardata.nweight + 1
+        }
+        tableYears[myWorkout.date.ayear] := yeardata
+    } else {
+        write("processline could not parse ", line)
+    }
+end
+
+# Process the entire input.
+procedure readlines()
+    tableYears := table()
+    iline := 0
+
+    while line := trim(read()) do {
+        iline := iline + 1;
+        if *line > 0 then {
+            processline(line)
+        }
+    }
+end
+
+procedure displayresults()
+    listYears := sort(tableYears,1)
+    every iyear := 1 to *listYears do {
+        yearinfo := listYears[iyear]
+        year := yearinfo[1]
+        yeardata := yearinfo[2]
+        aveweight := 0
+        if yeardata.nweight > 0 then {
+            aveweight := yeardata.totweight/yeardata.nweight
+        }
+        write(year, ",", aveweight, ",", yeardata.totwalk, ",", 
+            yeardata.totrun, ",", yeardata.totbike, ",", yeardata.totswim)
+    }
+end
+
+procedure test1()
+    line := "2022-03-08,123.6,2.63,0,10.3,0"
+    myWorkout := parseline(line)
+    if myWorkout.weight = 123.6 & myWorkout.walk = 2.63 & myWorkout.run = 0 &
+        myWorkout.bike = 10.3 & myWorkout.swim = 0 then {
+        write("Parsed ", line, " OK")
+    } else {
+        write("!! Failed to parse ", line)
+    }
+    
+end
+
+procedure main(args)
+    # Crack the command line arguments.
+    test := &null
+    i := 1
+    while i <= *args do {
+        if args[i] == "-t" then {
+            test := 1
+        }
+        i:=i+1
+    }
+
+    if \test then {
+        test1()
+    } else {
+        readlines()
+        displayresults()
+    }
+end

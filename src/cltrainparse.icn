@@ -1,4 +1,4 @@
-# This program, written in the Icon programming language, summarizes
+# This program, written in the Icon programming language, parses
 # (exercise) training log data from a file usually known as CLTRAINEW.
 #
 # CLTRAINEW was created by Paul S. Wolberg in January 1985, to track
