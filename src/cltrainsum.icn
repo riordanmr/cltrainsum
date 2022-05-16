@@ -7,10 +7,18 @@
 # where the columns are:
 # date,weight in pounds,miles walked,miles run,miles biked,miles swum
 #
+# Normal usage:
+#   icont cltrainsum.icn -x <days.csv
+# Usage for unit testing:
+#   icont cltrainsum.icn -x -t
+#
 # Mark Riordan  2022-05-11
 
+# A record that represents a date.
 record CDate(ayear, amonth, aday)
+# A record that represents the activities for one day.
 record CWorkoutDay(date, weight, walk, run, bike, swim)
+# A record that represents the running sums of activities for a year.
 record CYearSummary(totweight, nweight, totwalk, totrun, totbike, totswim)
 
 global tableYears
@@ -28,6 +36,34 @@ procedure parseDate(adate)
     return CDate(0+year, 0+month, 0+day)
 end
 
+# Concatenate two strings.
+# Oddly, the // operator sometimes causes a failure (and does not return
+# a result), so this is a workaround for using //.
+procedure concat(str1, str2)
+    result := str1
+    result[*str1+1 : *str1+1] := str2
+    return result
+end
+
+# Convert a number to a string with one decimal place.
+# E.g. 65 is converted to 65.0; 65.762 is converted to 65.8.
+procedure realtodecimal(myreal)
+    # Convert to string, allowing for rounding to nearest tenth.
+    strval := string(myreal + 0.05)
+    result := "badresult" 
+    if { strval ? {intpart := tab(many("-0123456789")) & match(".") & move(1) & decpart := move(1) } } then {
+        result := concat(intpart, ".")
+        result := concat(result, decpart)
+    } else {
+        result := concat(strval, ".0")
+    }
+    return result
+end
+
+# Parse an input line, and return a record containing its data.
+# Entry:    line is a line in the format emitted by cltrainparse.icn.
+#                See the comments at the top.
+# Exit:     Returns a CWorkoutDay record with the data, or fails.
 procedure parseline(line)
     notcomma := &ascii -- ','
     if line ? { 
@@ -46,14 +82,17 @@ procedure parseline(line)
     }
 end
 
+# Process an input line, adding it to the running sums.
+# Entry:    line is a line in the format emitted by cltrainparse.icn.
 procedure processline(line)
     if myWorkout := parseline(line) then {
         # Look up existing entry for this year
         yeardata := tableYears[myWorkout.date.ayear]
         if /yeardata then {
-            #write("processline: creating empty CYearSummary for ",myWorkout.date.ayear)
+            # No existing record for this year, so create an empty one.
             yeardata := CYearSummary(0,0,0,0,0,0)
         }
+        # Add in this line's data to the running sums.
         yeardata.totwalk := yeardata.totwalk + myWorkout.walk
         yeardata.totrun := yeardata.totrun + myWorkout.run
         yeardata.totbike := yeardata.totbike + myWorkout.bike
@@ -62,9 +101,10 @@ procedure processline(line)
             yeardata.totweight := yeardata.totweight + myWorkout.weight
             yeardata.nweight := yeardata.nweight + 1
         }
+        # Record the updated year's sums.
         tableYears[myWorkout.date.ayear] := yeardata
     } else {
-        write("processline could not parse ", line)
+        write("!! processline could not parse ", line)
     }
 end
 
@@ -81,21 +121,27 @@ procedure readlines()
     }
 end
 
+# Write summary output for all years, based on the table we have been
+# maintaining while processing lines.
 procedure displayresults()
     listYears := sort(tableYears,1)
     every iyear := 1 to *listYears do {
         yearinfo := listYears[iyear]
         year := yearinfo[1]
         yeardata := yearinfo[2]
+        # Compute the average weight for the year, or 0 if there's no data.
         aveweight := 0
         if yeardata.nweight > 0 then {
-            aveweight := yeardata.totweight/yeardata.nweight
+            aveweight := yeardata.totweight / yeardata.nweight
         }
-        write(year, ",", aveweight, ",", yeardata.totwalk, ",", 
-            yeardata.totrun, ",", yeardata.totbike, ",", yeardata.totswim)
+        write(year, ",", realtodecimal(aveweight), ",", realtodecimal(yeardata.totwalk), ",", 
+            realtodecimal(yeardata.totrun), ",", 
+            realtodecimal(yeardata.totbike), ",", 
+            realtodecimal(yeardata.totswim))
     }
 end
 
+# Unit tests.
 procedure test1()
     line := "2022-03-08,123.6,2.63,0,10.3,0"
     myWorkout := parseline(line)
@@ -105,7 +151,22 @@ procedure test1()
     } else {
         write("!! Failed to parse ", line)
     }
-    
+
+    num := 65
+    result := realtodecimal(num)
+    if result == "65.0" then {
+        write("Converted ", num, " to ", result, " OK")
+    } else {
+        write("!! Bad conversion of ", num,"; got ", result)
+    }
+
+    num := 65.672
+    result := realtodecimal(num)
+    if result == "65.7" then {
+        write("Converted ", num, " to ", result, " OK")
+    } else {
+        write("!! Bad conversion of ", num,"; got ", result)
+    }
 end
 
 procedure main(args)
