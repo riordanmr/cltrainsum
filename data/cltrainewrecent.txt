@@ -6001,7 +6001,7 @@
 08/02  4.5 miles r.; 10.02 miles b.
 08/03  22.87 miles b.; 1.6 miles w.
 
-08/04  202.78 miles b.; 3 miles w.
+08/04  20.78 miles b. (was 202.78); 3 miles w.
 08/05  4 miles r.; 5.09 miles b.; 1.4 miles w.
 08/06  10.84 miles b.; 1.6 miles w.
 08/07  5.12 miles b.; 5 miles r.; 2.8 miles w.
@@ -9594,7 +9594,7 @@
 03/21 [124.4T] 4.5 w.
 03/22 [122.4T] 3.9 w.
 03/23 [123.0T] 10 w68.; 3.9 w.
-03/24 [123.4T] 123.4 rt.; 1 w.
+03/24 [123.4T] 3.4 rt. (was 123.4); 1 w.
 03/25  (Kalahari)
 03/26 [122.8T] 4.45 w.
 
