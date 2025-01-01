@@ -3,6 +3,7 @@ src/cltrainsum
 src/cltrainparse
 cltrainsum
 cltrainew
-act.csv
+*.csv
 days.csv
-j
+cltrainewonlynew
+

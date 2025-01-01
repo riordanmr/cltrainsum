@@ -37,7 +37,7 @@
 # 
 # Here's an example:
 #   07/23  0.6 miles sr; 18.3 miles br.; 4.6 miles rr.  (Capitol City Triathlon.
-#   +      Think swim may have been short. 
+#   +      Think swim may have been short.)
 # In later years, I started omitting the units, due to the difficulty of entering
 # text on a mobile phone.  If units are omitted, they default to a fixed unit
 # based on activity type (usually miles), like this:
