@@ -15,3 +15,5 @@ changed format over time, until the format settled down in mid-1988.
 This program recognizes only entries in this "new" format.
 Therefore, input to the program is typically pre-processed to remove
 any lines prior to (typically) 1989-01-01.
+
+This program is written in the obscure programming language Icon.
